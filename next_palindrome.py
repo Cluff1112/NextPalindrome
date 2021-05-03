@@ -22,6 +22,3 @@ def next_palindrome(num: int):
 
     final = f"{left}{right}"
     return int(final)
-
-
-print(next_palindrome(3**39))
