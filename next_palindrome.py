@@ -9,16 +9,19 @@ from math import ceil
 def next_palindrome(num: int):
     """find next palindrome"""
     start = str(num)
-    half_len = ceil(len(start) / 2)
-    half_string = start[:half_len]
-    new_half_string = str(int(half_string) + 1)
+    full_len = len(start)
+    half_len = ceil(full_len / 2)
+    head = start[:half_len]
+    tail = start[-half_len:]
 
-    left_len = half_len - 1 if len(start) % 2 else half_len
-    left = new_half_string[:left_len]
+    if head[::-1] <= tail or tail == '':
+        head = str(int(head) + 1)
+    if len(head) > half_len:
+        full_len += 1
 
-    need_new_digit = len(new_half_string) > len(half_string)
-    right_len = half_len + 1 if need_new_digit else half_len
-    right = new_half_string[:right_len][::-1]
+    left_len = ceil(full_len/2)
+    right_len = int(full_len/2)
+    left = head[:left_len]
+    right = head[:right_len][::-1]
 
-    final = f"{left}{right}"
-    return int(final)
+    return int(f"{left}{right}")
